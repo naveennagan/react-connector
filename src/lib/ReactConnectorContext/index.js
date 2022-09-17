@@ -1,5 +1,8 @@
-export const ReactConnectorContext = (connectId) => {
+let ReactConnectorContext = (connectId) => {
     return {
-        connectId
+        connectId,
+        connectors: []
     }
 }
+
+export default ReactConnectorContext;

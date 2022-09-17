@@ -43,6 +43,7 @@
   width: 100px;
   line-height: 100px;
   background-color: aquamarine;
+  cursor: pointer;
 }
 
 .circle {
@@ -51,6 +52,7 @@
   line-height: 100px;
   background-color: aquamarine;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .react-connector-start {
@@ -59,6 +61,17 @@
 
 .react-connector-end {
   position: relative;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right:10px solid blue;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
 }
 
 @keyframes App-logo-spin {
