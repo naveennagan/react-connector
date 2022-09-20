@@ -2,7 +2,7 @@ import React from "react";
 
 const ReactConnectorEnd = (props) => {
 
-    const { connectorContext, endIdentifier } = props;
+    const { connectorContext, uniqueid } = props;
 
     const { connectId } = connectorContext;
 
@@ -74,6 +74,10 @@ const ReactConnectorEnd = (props) => {
     }
 
     const onDrop = (event) => {
+
+        event.preventDefault();
+
+        event.stopPropagation();
         
         const targetX = event.pageX;
 
@@ -86,7 +90,7 @@ const ReactConnectorEnd = (props) => {
         const sourceY = sourceCooridnatesStringTokens[1];
 
         let connectionObj = {
-            endIdentifier,
+            endIdentifier: uniqueid,
             startIdentifier: sourceCooridnatesStringTokens[2],
             sourceX,
             sourceY,

@@ -2,7 +2,7 @@ import React from "react";
 
 const ReactConnectorStart = (props) => {
 
-    const { connectorContext, startIdentifier } = props;
+    const { connectorContext, uniqueid } = props;
 
     const { connectId } = connectorContext;
 
@@ -17,7 +17,7 @@ const ReactConnectorStart = (props) => {
 
         const dragY = event.pageY;
 
-        event.dataTransfer.setData(connectId, `${dragX},${dragY},${startIdentifier}`);
+        event.dataTransfer.setData(connectId, `${dragX},${dragY},${uniqueid}`);
 
     }
     

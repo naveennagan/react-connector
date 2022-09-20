@@ -18,7 +18,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const ReactConnectorStart = props => {
   const {
     connectorContext,
-    startIdentifier
+    uniqueid
   } = props;
   const {
     connectId
@@ -30,7 +30,7 @@ const ReactConnectorStart = props => {
   const onDragStart = event => {
     const dragX = event.pageX;
     const dragY = event.pageY;
-    event.dataTransfer.setData(connectId, "".concat(dragX, ",").concat(dragY, ",").concat(startIdentifier));
+    event.dataTransfer.setData(connectId, "".concat(dragX, ",").concat(dragY, ",").concat(uniqueid));
   };
 
   const styles = {
