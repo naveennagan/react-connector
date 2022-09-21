@@ -1,8 +1,10 @@
-import React from "react";
+import React, { createRef } from "react";
 
 const ReactConnectorEnd = (props) => {
 
     const { connectorContext, uniqueid } = props;
+
+    const connectorEndRef = createRef();
 
     const { connectId } = connectorContext;
 
@@ -60,7 +62,7 @@ const ReactConnectorEnd = (props) => {
 
         connectorArrowTip.style.borderBottom = "10px solid transparent";
 
-        connectorArrowTip.style.borderRight = "10px solid blue";
+        connectorArrowTip.style.borderRight = "10px solid black";
 
         connectorArrowTip.style.position = "absolute";
 
@@ -70,7 +72,7 @@ const ReactConnectorEnd = (props) => {
         
         div.appendChild(connectorArrowTip);
         
-        document.body.appendChild(div);
+        connectorEndRef.current.appendChild(div);
     }
 
     const onDrop = (event) => {
@@ -116,10 +118,10 @@ const ReactConnectorEnd = (props) => {
     }
     
 
-    return <div className='connector-end' connector="true" onDrop={onDrop} onDragOver={onDragOver} style={{...styles}}>
+    return <div className='connector-end' ref= { connectorEndRef } connector="true" onDrop={onDrop} onDragOver={onDragOver} style={{...styles}}>
             {
                 React.Children.map(props.children, child => {
-                    return React.cloneElement(child, {newProps}, null );
+                    return React.cloneElement(child, {...newProps}, null );
                 })
             }
     </div>

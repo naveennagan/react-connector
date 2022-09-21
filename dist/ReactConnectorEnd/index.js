@@ -1,13 +1,17 @@
 "use strict";
 
+require("core-js/modules/web.dom-collections.iterator.js");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -20,6 +24,7 @@ const ReactConnectorEnd = props => {
     connectorContext,
     uniqueid
   } = props;
+  const connectorEndRef = /*#__PURE__*/(0, _react.createRef)();
   const {
     connectId
   } = connectorContext;
@@ -58,12 +63,12 @@ const ReactConnectorEnd = props => {
     connectorArrowTip.style.height = "0px";
     connectorArrowTip.style.borderTop = "10px solid transparent";
     connectorArrowTip.style.borderBottom = "10px solid transparent";
-    connectorArrowTip.style.borderRight = "10px solid blue";
+    connectorArrowTip.style.borderRight = "10px solid black";
     connectorArrowTip.style.position = "absolute";
     connectorArrowTip.style.bottom = "-10px";
     connectorArrowTip.style.left = "-10px";
     div.appendChild(connectorArrowTip);
-    document.body.appendChild(div);
+    connectorEndRef.current.appendChild(div);
   };
 
   const onDrop = event => {
@@ -97,14 +102,13 @@ const ReactConnectorEnd = props => {
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "connector-end",
+    ref: connectorEndRef,
     connector: "true",
     onDrop: onDrop,
     onDragOver: onDragOver,
     style: _objectSpread({}, styles)
   }, _react.default.Children.map(props.children, child => {
-    return /*#__PURE__*/_react.default.cloneElement(child, {
-      newProps
-    }, null);
+    return /*#__PURE__*/_react.default.cloneElement(child, _objectSpread({}, newProps), null);
   }));
 };
 
