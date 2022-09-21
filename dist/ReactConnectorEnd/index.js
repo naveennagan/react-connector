@@ -68,7 +68,6 @@ const ReactConnectorEnd = props => {
     connectorArrowTip.style.bottom = "-10px";
     connectorArrowTip.style.left = "-10px";
     div.appendChild(connectorArrowTip);
-    element.classList.add("connector");
     connectorEndRef.current.appendChild(div);
   };
 
