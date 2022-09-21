@@ -2,7 +2,7 @@ import React, { createRef } from "react";
 
 const ReactConnectorEnd = (props) => {
 
-    const { connectorContext, uniqueid } = props;
+    const { connectorContext, uniqueid, selector } = props;
 
     const connectorEndRef = createRef();
 
@@ -52,6 +52,8 @@ const ReactConnectorEnd = (props) => {
 
         div.style.transformOrigin = 'left';
 
+        div.style.zIndex = '10000';
+
         var connectorArrowTip = document.createElement('div');
 
         connectorArrowTip.style.width = "0px";
@@ -71,8 +73,15 @@ const ReactConnectorEnd = (props) => {
         connectorArrowTip.style.left = "-10px";
         
         div.appendChild(connectorArrowTip);
+
+        var appendorElement = document.getElementById(selector);
+
+        if(appendorElement){
+            appendorElement.appendChild(div);
+        }else{
+            connectorEndRef.current.appendChild(div);
+        }
         
-        connectorEndRef.current.appendChild(div);
     }
 
     const onDrop = (event) => {

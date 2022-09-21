@@ -22,7 +22,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const ReactConnectorEnd = props => {
   const {
     connectorContext,
-    uniqueid
+    uniqueid,
+    selector
   } = props;
   const connectorEndRef = /*#__PURE__*/(0, _react.createRef)();
   const {
@@ -58,6 +59,7 @@ const ReactConnectorEnd = props => {
     div.style.top = y2 + "px";
     div.style.transform = "rotate(".concat(rotateAngle, "deg)");
     div.style.transformOrigin = 'left';
+    div.style.zIndex = '10000';
     var connectorArrowTip = document.createElement('div');
     connectorArrowTip.style.width = "0px";
     connectorArrowTip.style.height = "0px";
@@ -68,7 +70,13 @@ const ReactConnectorEnd = props => {
     connectorArrowTip.style.bottom = "-10px";
     connectorArrowTip.style.left = "-10px";
     div.appendChild(connectorArrowTip);
-    connectorEndRef.current.appendChild(div);
+    var appendorElement = document.getElementById(selector);
+
+    if (appendorElement) {
+      appendorElement.appendChild(div);
+    } else {
+      connectorEndRef.current.appendChild(div);
+    }
   };
 
   const onDrop = event => {
